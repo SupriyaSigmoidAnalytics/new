@@ -5,7 +5,7 @@ data= pd.read_csv(dataset_path)
 
 data['Date']=pd.to_datetime(data['Date'],errors='coerce')
 data['Customer_Name'].fillna('Unkown', inplace=True)
-data['Discount']=data['Discount'].replace({'None%':'0%'},regex=True)
+data['Discount']=data['Discount'].str.replace('%','',regex=True)
 data['Discount'] = pd.to_numeric(data['Discount'], errors='coerce')  
 data['Discount'] = data['Discount'] / 100 
 

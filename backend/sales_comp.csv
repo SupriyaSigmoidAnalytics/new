@@ -1,9 +1,9 @@
 Product,sales_before_discount,sales_after_discount
-Headphones,3825140.0,0.0
-Keyboard,1494946.0,0.0
-Laptop,37905135.0,0.0
-Monitor,8302661.0,0.0
-Mouse,744722.0,0.0
-Printer,9214669.0,0.0
-Smartphone,24497866.0,0.0
-Tablet,16757672.0,0.0
+Headphones,3825140.0,2817849.75
+Keyboard,1494946.0,1114848.2
+Laptop,37905135.0,28073637.85
+Monitor,8302661.0,6151423.25
+Mouse,744722.0,553461.6
+Printer,9214669.0,6785821.3
+Smartphone,24497866.0,18122991.2
+Tablet,16757672.0,12376601.35
