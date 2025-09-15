@@ -1,24 +1,41 @@
-from flask import Flask, jsonify
+# backend/app.py
+from flask import Flask, jsonify, request
 import pandas as pd
+from sqlalchemy import create_engine
+from flask_cors import CORS
 
-app=Flask(__name__)
+app = Flask(__name__)
+CORS(app)
 
-data=pd.read_csv('cleaned_dataset.csv')
-sales_comparison=pd.read_csv('sales_comp.csv')
+engine = create_engine("sqlite:///sales.db")
 
-@app.route('/')
-def home():
-    return " Available routes: /get-sales-comparison, /get-data"
+@app.route('/get-sales-comparison', methods=['GET'])
+def get_sales_comparison():
+    query = "SELECT * FROM sales_comparison"
+    df = pd.read_sql(query, engine)
+    return jsonify(df.to_dict(orient='records'))
 
-@app.route('/get-sales-comparison',methods=['GET'])
-def get_sales_comparision():
-    result=sales_comparison.to_dict(orient='records')
-    return jsonify(result)
-
-@app.route('/get-data',methods=['GET'])
+@app.route('/get-data', methods=['GET'])
 def get_data():
-    result=data.to_dict(orient='records')
-    return jsonify(result)
+    limit = int(request.args.get('limit', 50))   
+    offset = int(request.args.get('offset', 0))  
+    
+    query = f"SELECT * FROM cleaned_data LIMIT {limit} OFFSET {offset}"
+    df = pd.read_sql(query, engine)
+
+    
+    count_query = "SELECT COUNT(*) AS total FROM cleaned_data"
+    total = pd.read_sql(count_query, engine)['total'][0]
+
+   
+    return jsonify({
+        "total": int(total),
+        "limit": limit,
+        "offset": offset,
+        "rows": df.astype(object).where(pd.notnull(df), None).to_dict(orient='records')
+    })
+
 
 if __name__ == '__main__':
-    app.run(debug=True)        
+    app.run(debug=True)
+ 
