@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '40px' }}>
-      <h1>🚀 Full Stack React + Node App</h1>
+      <h1>🚀 Full Stack React + Node App(updated!)</h1>
       <h2>{message ? message : 'Loading message from backend...'}</h2>
     </div>
   );
