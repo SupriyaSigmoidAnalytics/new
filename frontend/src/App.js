@@ -114,7 +114,7 @@ function App() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.header}>📝 Task Manager</h1>
+      <h1 style={styles.header}>📝 ToDo</h1>
 
       <div>
         <input
