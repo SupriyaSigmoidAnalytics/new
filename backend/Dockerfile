@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 5000
 
 # Step 6: Command to start backend
-CMD ["node", "service.js"]
+CMD ["npm", "start"]
