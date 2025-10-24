@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-dashboard
+  namespace: monitoring
+  labels:
+    grafana_dashboard: "1"
+data:
+  backend-dashboard.json: |
+    {
+      "title": "Backend Metrics",
+      "panels": [
+        {
+          "type": "graph",
+          "title": "HTTP Requests Total",
+          "targets": [
+            {
+              "expr": "http_requests_total",
+              "legendFormat": "{{method}} {{route}}"
+            }
+          ]
+        },
+        {
+          "type": "graph",
+          "title": "Tasks Count",
+          "targets": [
+            {
+              "expr": "tasks_count",
+              "legendFormat": "Tasks"
+            }
+          ]
+        },
+        {
+          "type": "graph",
+          "title": "Task Operations Total",
+          "targets": [
+            {
+              "expr": "task_operations_total",
+              "legendFormat": "{{op}}"
+            }
+          ]
+        }
+      ],
+      "schemaVersion": 30,
+      "version": 1
+    }
