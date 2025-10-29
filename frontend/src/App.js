@@ -154,10 +154,10 @@ function App() {
             <button
               style={styles.deleteButton}
               onClick={() => deleteTask(task.id)}
-              onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#d32f2f")}
-              onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#f44336")}
+              onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#f5dcdcff")}
+              onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#dddad9ff")}
             >
-              ❌
+              
             </button>
           </li>
         ))}
